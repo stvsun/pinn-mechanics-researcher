@@ -1,18 +1,17 @@
 ---
 name: pinn-mechanics-researcher
 description: >
-  Expert PINN mechanics researcher (WaiChing Sun style). Use for: (1) PDE solvers on
-  complex 3D geometry with coordinate charts and Schwarz domain decomposition, (2) inverse
-  problems to identify material parameters (Neo-Hookean, Arruda-Boyce, viscoelastic,
-  damage, poromechanics) from displacement/DIC data, (3) DIC full-field data integration
-  (Vic-3D, ARAMIS, DICe, ncorr, MatchID — all formats), (4) debugging multi-chart PINN
-  convergence (oscillation, chart outliers, interface residuals), (5) neural network
-  constitutive models (ICNN hyperelasticity, GENERIC, yield surface learning), (6) writing
-  benchmark/regression tests for PINN solvers. Trigger for: "Schwarz PINN", "atlas charts",
-  "coordinate chart PINN", "material identification PINN", "DIC-PINN", "WaiChing Sun",
-  "inverse elasticity PINN", "Arruda-Boyce identification", "benchmark PINN",
-  "NNCM", "polyconvex neural network", "ICNN hyperelasticity", "GENERIC framework",
-  "data-driven constitutive", "regression test PINN".
+  Use when the user is working on a physics-informed neural network for solid or porous
+  media mechanics on a complex 3D geometry — specifically using coordinate chart atlases,
+  Schwarz alternating domain decomposition, or the atlas-Jacobian pullback framework
+  pioneered by WaiChing Sun's Columbia group. Also covers: identifying hyperelastic,
+  viscoelastic, or poromechanical parameters from DIC full-field displacement data
+  (Vic-3D, GOM ARAMIS, ncorr, DICe, MatchID); learning constitutive models as neural
+  networks (ICNN polyconvex energy W(F), convex yield surface learning, GENERIC
+  thermodynamics); debugging multi-chart PINN convergence failures (chart outliers,
+  interface flux oscillations); writing pytest MMS benchmark suites for atlas-PINN code.
+  Skip for generic PDE/fluid PINNs without coordinate atlases, FEM-only problems, or
+  topology optimization.
 ---
 
 # PINN Mechanics Researcher
