@@ -101,18 +101,17 @@ claude skill install pinn-mechanics-researcher.skill
 
 ---
 
-## Trigger phrases
+## When to use
 
-The skill auto-activates when your message contains any of:
+The skill auto-activates for context-aware requests — no exact phrase matching required. It activates when you are:
 
-- `Schwarz PINN`, `atlas charts`, `coordinate chart PINN`
-- `material identification PINN`, `DIC-PINN`, `WaiChing Sun`
-- `inverse elasticity PINN`, `Arruda-Boyce identification`
-- `benchmark PINN`, `regression test PINN`
-- `NNCM`, `polyconvex neural network`, `ICNN hyperelasticity`
-- `GENERIC framework`, `data-driven constitutive`
+- **Building PINNs on complex 3D geometry** using coordinate chart atlases, Schwarz alternating domain decomposition, or the atlas-Jacobian pullback framework
+- **Identifying material parameters** (hyperelastic, viscoelastic, or poromechanical) from DIC full-field displacement data (Vic-3D, GOM ARAMIS, ncorr, DICe, MatchID)
+- **Learning constitutive models as neural networks** — ICNN polyconvex energy W(F), convex yield surface, GENERIC thermodynamics
+- **Debugging multi-chart PINN convergence** — chart outliers, interface flux oscillations, Schwarz non-convergence
+- **Writing pytest MMS benchmark suites** for atlas-PINN solvers
 
-It also triggers for contextual requests like: implementing a Schwarz solver, integrating DIC data into a PINN, debugging chart-specific convergence failures, or writing material model tests.
+**Skip** for generic PDE/fluid PINNs without coordinate atlases, FEM-only problems, or topology optimization.
 
 ---
 
@@ -163,6 +162,20 @@ multi-load-path DIC data without assuming a parametric form.
 How do I set up the ICNN and the joint inverse loss?
 ```
 
+```
+I'm implementing a Kelvin-Voigt viscoelastic PINN on a liver mesh with 5
+coordinate charts and 4 MRI time steps. How do I extend the Schwarz elasticity
+loss to include the viscous stress term through the chart Jacobian, and handle
+u_dot in chart coordinates?
+```
+
+```
+I ran GOM ARAMIS 4D on a cartilage confined compression test (8 time steps,
+HDF5 output with Step_00..Step_07). I want to identify Biot poromechanics
+parameters: K_u, G, alpha, M. Walk me through loading the data, per-step
+rigid body subtraction, and identifiability analysis from compression-only data.
+```
+
 ---
 
 ## Background
@@ -190,8 +203,8 @@ Pull requests welcome. Key areas to expand:
 
 - Additional DIC software loaders (Dantec iSTRUCT, Imetrum, LaVision)
 - Rate-dependent NNCMs (viscohyperelastic, finite-strain plasticity)
-- 4D space-time chart implementation
-- Poromechanics inverse problems (Biot identification from pore pressure + displacement)
+- 4D space-time chart implementation (eval coverage added in iteration 3)
+- Enhanced Biot poromechanics inverse problems (pore pressure + DIC joint identification)
 - Integration with FEniCSx or JAX-FEM for FEM-PINN hybrid solvers
 
 ---
